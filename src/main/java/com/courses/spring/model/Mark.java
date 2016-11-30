@@ -3,12 +3,12 @@ package com.courses.spring.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = ("mark"))
+@Table(name = "mark")
 public class Mark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ("ID"))
+    @Column(name = "ID")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -17,7 +17,7 @@ public class Mark {
     @ManyToOne
     private Subject subject;
 
-    @Column(name = ("MARK"))
+    @Column(name = "MARK")
     private int mark;
 
     public int getId() {

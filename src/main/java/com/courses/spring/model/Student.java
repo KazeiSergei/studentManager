@@ -7,19 +7,19 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name =("student"))
+@Table(name ="student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name=("ID"))
+    @Column(name="ID")
     private int id;
 
-    @Column(name=("FIRST_NAME"))
+    @Column(name="FIRST_NAME")
     @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Name is invalid")
     private String firstName;
 
-    @Column(name=("SECOND_NAME"))
+    @Column(name="SECOND_NAME")
     @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "SecondName is invalid")
     private String secondName;
 

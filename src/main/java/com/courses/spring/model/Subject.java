@@ -5,15 +5,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name =("subject"))
+@Table(name ="subject")
 public class Subject {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name=("ID"))
+    @Column(name="ID")
     private int id;
 
-    @Column(name=("SUBJECT_NAME"))
+    @Column(name="SUBJECT_NAME")
     private String name;
 
     @OneToMany(mappedBy = "subject")
