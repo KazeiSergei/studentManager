@@ -27,7 +27,7 @@ public class SubjectDaoImpl implements SubjectDao {
         return (Subject) getSession().load(Subject.class, new Integer(id));
     }
 
-    public List<Subject> getAllSudject() {
+    public List<Subject> getAllSubject() {
         Criteria criteria = getSession().createCriteria(Subject.class);
         return (List<Subject>) criteria.list();
     }

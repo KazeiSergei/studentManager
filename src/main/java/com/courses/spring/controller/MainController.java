@@ -44,7 +44,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView createStudent() {
+    public ModelAndView createStudentPage() {
         return new ModelAndView("createStudent", "student", new Student());
     }
 
@@ -58,7 +58,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/pageForUpdating", method = RequestMethod.GET)
-    public ModelAndView pageForUpdating(@RequestParam("id") Integer id) {
+    public ModelAndView pageForUpdate(@RequestParam("id") Integer id) {
         Student student = studentDao.getStudentById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("student", student);
@@ -67,7 +67,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
-    public String pageForUpdating(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+    public String updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "pageForUpdating";
         }
@@ -86,7 +86,7 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("student", studentDao.getStudentById(id));
         modelAndView.addObject("id", id);
-        modelAndView.addObject("subjects", subjectDao.getAllSudject());
+        modelAndView.addObject("subjects", subjectDao.getAllSubject());
         modelAndView.setViewName("getStudentWithMarkAndSubject");
         return modelAndView;
     }
@@ -101,9 +101,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/insertMark/{student.id}", method = RequestMethod.POST)
-    public String insertMark(@PathVariable("student.id") int id, HttpServletRequest request) {
-        int subjectId = Integer.parseInt(request.getParameter("subject"));
-        int mark = Integer.parseInt(request.getParameter("mark"));
+    public String insertMark(@PathVariable("student.id") int id, @RequestParam("subject") int subjectId, @RequestParam("mark") int mark ) {
         Subject subject = subjectDao.getSubjectById(subjectId);
         Student student = studentDao.getStudentById(id);
         Mark mark1 = new Mark();

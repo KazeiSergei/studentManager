@@ -28,26 +28,26 @@ public class SubjectDaoImplTest extends EntityDaoImplTest {
 
     @Test
     public void findAllSubject() {
-        Assert.assertEquals(subjectDao.getAllSudject().size(), 2);
+        Assert.assertEquals(subjectDao.getAllSubject().size(), 2);
     }
 
 
     @Test
     public void deleteSubjectById() {
         subjectDao.deleteSubject(1);
-        Assert.assertEquals(subjectDao.getAllSudject().size(), 1);
+        Assert.assertEquals(subjectDao.getAllSubject().size(), 1);
     }
 
     @Test
     public void deleteSubject() {
         subjectDao.deleteSubject(subjectDao.getSubjectById(1));
-        Assert.assertEquals(subjectDao.getAllSudject().size(), 1);
+        Assert.assertEquals(subjectDao.getAllSubject().size(), 1);
     }
 
     @Test
     public void insertSubject() {
         subjectDao.insertSubject(getSampleSubject());
-        Assert.assertEquals(subjectDao.getAllSudject().size(), 3);
+        Assert.assertEquals(subjectDao.getAllSubject().size(), 3);
     }
 
 

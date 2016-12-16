@@ -9,7 +9,7 @@ public interface SubjectDao {
 
     Subject getSubjectById(int id);
 
-    List<Subject> getAllSudject();
+    List<Subject> getAllSubject();
 
     void insertSubject(Subject subject);
 
