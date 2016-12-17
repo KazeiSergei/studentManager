@@ -27,12 +27,17 @@ public class MainController {
     @Autowired
     private SubjectDao subjectDao;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/students", method = RequestMethod.GET)
     public ModelAndView printStudents() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("students", studentDao.getAllStudent());
         modelAndView.setViewName("main");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
 
     @RequestMapping(value = "/getStudentById", method = RequestMethod.GET)
@@ -92,8 +97,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/deleteMark/{id}", method = RequestMethod.POST)
-    public String deleteMark(@PathVariable("id") int id, HttpServletRequest request) {
-        String[] marksId = request.getParameterValues("markId");
+    public String deleteMark(@PathVariable("id") int id, @RequestParam("markId") String[] marksId) {
         for (String markId : marksId) {
             markDao.deleteMark(Integer.parseInt(markId));
         }
@@ -110,6 +114,20 @@ public class MainController {
         mark1.setSubject(subject);
         markDao.insertMark(mark1);
         return "redirect:/getStudentWithMarkAndSubject?id=" + id;
+    }
+
+    @RequestMapping(value = "/createSubject", method = RequestMethod.GET)
+    public ModelAndView createSubject() {
+        return new ModelAndView("createSubject", "subject", new Subject());
+    }
+
+    @RequestMapping(value = "/createSubject", method = RequestMethod.POST)
+    public String addStudentToDB(@Valid @ModelAttribute("subject") Subject subject, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "createSubject";
+        }
+        subjectDao.insertSubject(subject);
+        return "redirect:/";
     }
 
 }

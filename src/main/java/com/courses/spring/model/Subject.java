@@ -1,6 +1,7 @@
 package com.courses.spring.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ public class Subject {
     private int id;
 
     @Column(name="SUBJECT_NAME")
+    @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Subject is invalid")
     private String name;
 
     @OneToMany(mappedBy = "subject")

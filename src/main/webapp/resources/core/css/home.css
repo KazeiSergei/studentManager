@@ -245,6 +245,15 @@ body {
 	margin: -130px 0 0 -166px;
 }
 
+.box.login1 {
+	height: 180px;
+	width: 332px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -130px 0 0 -166px;
+}
+
 .boxBody {
 	background: #fefefe;
 	border-top: 1px solid #dde0e8;

@@ -60,9 +60,12 @@
             </td>
         </tr>
         <tr>
-            <td align="right" colspan="2"><input type="submit" value="Insert"/></td>
+
+            <td></td><td align="right" colspan="2"><input type="submit" value="Insert"/></td>
         </tr>
     </table>
+    <c:url value="/createSubject" var="createSubjectUrl"></c:url>
+    <input type="button" value="addSubject" onclick='location.href="${createSubjectUrl}"'>
 </form>
 </body>
 </html>
