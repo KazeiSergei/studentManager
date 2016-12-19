@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<form:form method="POST" commandName="student" action="updateStudent" class="box login">
+<form:form method="POST" commandName="student" action="updateStudent">
     <fieldset class="boxBody">
 
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -27,18 +28,19 @@ public class MainController {
     @Autowired
     private SubjectDao subjectDao;
 
-    @RequestMapping(value = "/students", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView printStudents() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("students", studentDao.getAllStudent());
-        modelAndView.setViewName("main");
+        modelAndView.addObject("subjects", subjectDao.getAllSubject());
+        modelAndView.setViewName("tables");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
         return "login";
-    }
+    }*/
 
     @RequestMapping(value = "/getStudentById", method = RequestMethod.GET)
     public ModelAndView getStudentById(@RequestParam("id") Integer id) {
@@ -50,13 +52,13 @@ public class MainController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView createStudentPage() {
-        return new ModelAndView("createStudent", "student", new Student());
+        return new ModelAndView("createStudent1", "student", new Student());
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String addStudentToDB(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "createStudent";
+            return "createStudent1";
         }
         studentDao.insertStudent(student);
         return "redirect:/";
@@ -67,27 +69,32 @@ public class MainController {
         Student student = studentDao.getStudentById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("student", student);
-        modelAndView.setViewName("pageForUpdating");
+        modelAndView.setViewName("pageForUpdating1");
         return modelAndView;
     }
 
     @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
     public String updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "pageForUpdating";
+            return "pageForUpdating1";
         }
         studentDao.updateStudent(student);
-        return "redirect:/getStudentById?id=" + student.getId();
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/deleteStudent", method = RequestMethod.GET)
     public String deleteStudent(@RequestParam("id") Integer id) {
+        Student student = studentDao.getStudentById(id);
+        Set<Mark> marks = student.getMarks();
+        for(Mark mark: marks){
+            markDao.deleteMark(mark.getId());
+        }
         studentDao.deleteStudent(id);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/getStudentWithMarkAndSubject", method = RequestMethod.GET)
-    public ModelAndView getStudentWithMarkAndSudject(@RequestParam("id") Integer id) {
+    public ModelAndView getStudentWithMarkAndSubject(@RequestParam("id") Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("student", studentDao.getStudentById(id));
         modelAndView.addObject("id", id);
