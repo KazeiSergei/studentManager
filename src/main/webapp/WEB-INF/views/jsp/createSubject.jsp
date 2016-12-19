@@ -3,7 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="<c:url value="/resources/core/css/home.css" />" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -15,7 +14,7 @@
         <form:errors path="name" cssClass="error"/>
 
     </fieldset>
-    <footer><input type="submit" class="btnLogin" value="Send"></footer>
+    <footer><button type="submit" class="btn btn-primary" value="Send"></button></footer>
 
 </form:form>
 

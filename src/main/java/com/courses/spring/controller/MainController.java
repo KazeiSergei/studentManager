@@ -29,18 +29,18 @@ public class MainController {
     private SubjectDao subjectDao;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView printStudents() {
+    public ModelAndView root() {
+        return new ModelAndView("redirect:/index.html");
+    }
+
+    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("students", studentDao.getAllStudent());
         modelAndView.addObject("subjects", subjectDao.getAllSubject());
-        modelAndView.setViewName("tables");
+        modelAndView.setViewName("index");
         return modelAndView;
     }
-
-    /*@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }*/
 
     @RequestMapping(value = "/getStudentById", method = RequestMethod.GET)
     public ModelAndView getStudentById(@RequestParam("id") Integer id) {
@@ -50,33 +50,33 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/createStudent.html", method = RequestMethod.GET)
     public ModelAndView createStudentPage() {
-        return new ModelAndView("createStudent1", "student", new Student());
+        return new ModelAndView("editStudent", "student", new Student());
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/createStudent.html", method = RequestMethod.POST)
     public String addStudentToDB(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "createStudent1";
+            return "editStudent";
         }
         studentDao.insertStudent(student);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/pageForUpdating", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateStudent.html", method = RequestMethod.GET)
     public ModelAndView pageForUpdate(@RequestParam("id") Integer id) {
         Student student = studentDao.getStudentById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("student", student);
-        modelAndView.setViewName("pageForUpdating1");
+        modelAndView.setViewName("editStudent");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateStudent.html", method = RequestMethod.POST)
     public String updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "pageForUpdating1";
+            return "editStudent";
         }
         studentDao.updateStudent(student);
         return "redirect:/";
@@ -123,7 +123,7 @@ public class MainController {
         return "redirect:/getStudentWithMarkAndSubject?id=" + id;
     }
 
-    @RequestMapping(value = "/createSubject", method = RequestMethod.GET)
+    @RequestMapping(value = "/createSubject.html", method = RequestMethod.GET)
     public ModelAndView createSubject() {
         return new ModelAndView("createSubject", "subject", new Subject());
     }

@@ -1,0 +1,18 @@
+~*
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.classpath
+.project
+.settings
+.externalToolBuilders
+*.orig
+.springBeans
+*.iml
+*.ipr
+*.iws
+*.ids

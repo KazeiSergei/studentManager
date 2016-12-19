@@ -1,27 +1,45 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <link href="<c:url value="/resources/core/css/home.css" />" rel="stylesheet">
-    <title>Title</title>
-</head>
-<body>
-<form:form method="POST" commandName="student" action="create" class="box login">
-    <fieldset class="boxBody">
+<%@ page
+    language="java"
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true" %>
 
-        <form:label path="firstName">Name:</form:label>
-        <form:input path="firstName"/>
-        <form:errors path="firstName" cssClass="error"/>
+<%@ include file="/WEB-INF/fragments/taglibs.jsp" %>
+<div class="container-fluid">
 
-        <form:label path="secondName">SecondName:</form:label>
-        <form:input path="secondName"/>
-        <form:errors path="secondName" cssClass="error"/>
+  <div class="row">
+    <div class="col-lg-6">
+      <c:choose>
+        <c:when test="${student.id != 0}">
+          <h2>Edit Student</h2>
+          <c:set var="formAction" value="updateStudent.html" />
+        </c:when>
+        <c:otherwise>
+          <h2>Create Student</h2>
+          <c:set var="formAction" value="createStudent.html" />
+        </c:otherwise>
+      </c:choose>
 
-    </fieldset>
-    <footer><input type="submit" class="btnLogin" value="Send"></footer>
+      <form:form method="POST" commandName="student" action="${formAction}">
+        <div class="form-group">
+          <form:label path="firstName">Name:</form:label>
+          <form:input path="firstName" class="form-control"/>
+          <utils:errors bean="student" property="firstName"/>
 
-</form:form>
+          <form:label path="secondName">SecondName:</form:label>
+          <form:input path="secondName" class="form-control"/>
+          <utils:errors bean="student" property="secondName"/>
+        </div class="form-group">
+        <footer>
+          <input type="submit" value="Save" class="btn btn-primary">
+          <c:url value="/" var="cancelUrl"/>
+          <input type="button" class="btn btn-warning" onclick="location.href='${cancelUrl}'" value="Cancel">
+        </footer>
+      </form:form>
 
-</body>
-</html>
+    </div>
+  </div>
+
+
+</div>
+<!-- /.container-fluid -->

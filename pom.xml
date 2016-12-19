@@ -24,6 +24,7 @@
     <jstl.version>1.2</jstl.version>
     <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
     <jetty-maven-plugin.version>9.2.11.v20150529</jetty-maven-plugin.version>
+    <tiles.version>3.0.4</tiles.version>
   </properties>
 
   <dependencies>
@@ -95,6 +96,19 @@
       <version>${jstl.version}</version>
     </dependency>
 
+    <!-- Apache Tiles -->
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-core</artifactId>
+      <version>${tiles.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+      <version>${tiles.version}</version>
+    </dependency>
+
+
     <!-- Testing dependencies -->
     <dependency>
       <groupId>org.testng</groupId>
@@ -143,8 +157,12 @@
         <configuration>
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <webApp>
-            <contextPath>/user-ui</contextPath>
+            <contextPath>/school-ui</contextPath>
           </webApp>
+          <httpConnector>
+            <!--host>localhost</host-->
+            <port>9999</port>
+          </httpConnector>
         </configuration>
       </plugin>
 
