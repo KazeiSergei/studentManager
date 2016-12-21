@@ -37,12 +37,8 @@
                       <td>${student.secondName}</td>
                       <td>
                         <a class="btn btn-sm btn-info"
-                           href="<c:url value='/updateStudent.html?id=${student.id}'/>" title="update">
-                          <i class="fa fa-fw fa-edit" aria-hidden="true"></i>
-                        </a>
-                        <a class="btn btn-sm btn-info confirmation"
-                           href="<c:url value='/deleteStudent?id=${student.id}'/>" title="delete" >
-                          <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                           href="<c:url value='/infoStudent.html?id=${student.id}'/>" title="info">
+                          <i class="fa fa-fw fa-info" aria-hidden="true"></i>
                         </a>
                       </td>
                     </tr>
@@ -51,8 +47,6 @@
                 </table>
             </c:otherwise>
         </c:choose>
-        <c:url value="/createStudent.html" var="createUrl"/>
-        <button class="btn btn-success" onClick='location.href="${createUrl}"'>Create Student</button>
       </div>
     </div>
     <div class="col-lg-6">
@@ -72,7 +66,6 @@
               <tr>
                 <th width="10%">ID</th>
                 <th>Subjects</th>
-                <th>Actions</th>
               </tr>
               </thead>
               <tbody>
@@ -80,24 +73,12 @@
                 <tr>
                   <td>${subject.id}</td>
                   <td>${subject.name}</td>
-                  <td>
-                    <a class="btn btn-sm btn-info"
-                       href="<c:url value='/updateSubject.html?id=${subject.id}'/>" title="update">
-                      <i class="fa fa-fw fa-edit" aria-hidden="true"></i>
-                    </a>
-                    <a class="btn btn-sm btn-info confirmation"
-                       href="<c:url value='/deleteSubject.html?id=${subject.id}'/>" title="delete">
-                      <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
-                    </a>
-                  </td>
                 </tr>
               </c:forEach>
               </tbody>
             </table>
           </c:otherwise>
         </c:choose>
-        <c:url value="/createSubject.html" var="createUrl"/>
-        <button class="btn btn-success" onClick='location.href="${createUrl}"'>Create Subject</button>
       </div>
     </div>
   </div>

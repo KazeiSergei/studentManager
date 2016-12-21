@@ -21,7 +21,10 @@
       </c:choose>
 
       <form:form method="POST" commandName="student" action="${formAction}">
-        <div class="form-group">
+        <div  class="form-group">
+          <c:if test="${student.id != 0}">
+          <form:hidden path="id"/>
+          </c:if>
           <form:label path="firstName">Name:</form:label>
           <form:input path="firstName" class="form-control"/>
           <utils:errors bean="student" property="firstName"/>

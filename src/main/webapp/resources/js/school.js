@@ -11,4 +11,10 @@ $(document).ready(function () {
         });
         target.addClass("form-error");
     });
+    /////////
+
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
 });
+

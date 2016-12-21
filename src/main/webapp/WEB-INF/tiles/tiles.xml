@@ -22,6 +22,22 @@
     <put-attribute name="body" value="/WEB-INF/views/jsp/createStudent.jsp"/>
   </definition>
 
+  <definition name="editSubject" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/createSubject.jsp"/>
+  </definition>
+
+  <definition name="teacherJournal" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/teachersJournal.jsp"/>
+  </definition>
+
+  <definition name="infoStudent" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/infoStudent.jsp"/>
+  </definition>
+
+  <definition name="incorrectId" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/incorrectId.jsp"/>
+  </definition>
+
   <definition name="errors/404" extends="_main">
     <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp"/>
   </definition>
