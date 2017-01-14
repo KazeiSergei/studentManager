@@ -6,10 +6,13 @@ import com.courses.spring.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("userDao")
 public class UserDaoImpl implements UserDao {
 
     @Autowired
@@ -21,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(int id) {
-        return (User) getSession().load(User.class, new Integer(id));
+        return (User) getSession().get(User.class, id);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(int id) {
-        getSession().delete(getSession().load(User.class, new Integer(id)));
+        getSession().delete(getSession().get(User.class, id));
     }
 
     @Override
@@ -48,5 +51,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void updateUser(User user) {
         getSession().update(user);
+    }
+
+    @Override
+    public User getByLogin(String login) {
+        Criteria criteria = getSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("login",login));
+        return (User) criteria.uniqueResult();
     }
 }

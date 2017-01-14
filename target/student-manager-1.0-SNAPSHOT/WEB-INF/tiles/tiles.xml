@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="_main" template="/WEB-INF/templates/main.jsp">
+    <put-attribute name="title" value="views.index.title"/>
+  </definition>
+
+  <definition name="_login" template="/WEB-INF/templates/login.jsp">
+    <put-attribute name="title" value="views.index.title"/>
+  </definition>
+
+  <definition name="login" extends="_login">
+    <put-attribute name="body" value="/WEB-INF/views/login.jsp"/>
+  </definition>
+
+  <definition name="index" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/administrative.jsp"/>
+  </definition>
+
+  <definition name="editStudent" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/createStudent.jsp"/>
+  </definition>
+
+  <definition name="editSubject" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/createSubject.jsp"/>
+  </definition>
+
+  <definition name="errors/404" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/errors/404.jsp"/>
+  </definition>
+  <definition name="errors/403" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/errors/403.jsp"/>
+  </definition>
+  <definition name="errors/500" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/errors/500.jsp"/>
+  </definition>
+
+</tiles-definitions>

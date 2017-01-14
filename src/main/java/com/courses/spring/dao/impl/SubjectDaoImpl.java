@@ -8,12 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component("subjectDao")
-@Transactional
 public class SubjectDaoImpl implements SubjectDao {
 
     @Autowired
@@ -25,7 +23,7 @@ public class SubjectDaoImpl implements SubjectDao {
 
     @Override
     public Subject getSubjectById(int id) {
-        return (Subject) getSession().load(Subject.class, new Integer(id));
+        return (Subject) getSession().get(Subject.class, id);
     }
 
     @Override

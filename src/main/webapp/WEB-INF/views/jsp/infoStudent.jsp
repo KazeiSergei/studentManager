@@ -7,15 +7,19 @@
 <%@ include file="/WEB-INF/fragments/taglibs.jsp"%>
 
 <div class="container-fluid">
+  <span style="float:right">
+            <a href="?id=${student.id}&language=en">en</a>
+            <a href="?id=${student.id}&language=ru">ru</a>
+        </span>
   <div class="row">
     <div class="col-lg-6">
-      <h2>Student ${student.firstName} | ${student.secondName}</h2>
+      <h2><spring:message code="infoStudent.student"/> &nbsp ${student.firstName} &nbsp ${student.secondName}</h2>
       <div class="table-responsive">
         <c:choose>
             <c:when test="${empty student.marks}">
                 <div class="panel panel-search-result" class="panel-warning">
                     <div class="panel-body text-danger">
-                        <h2 class="panel-title text-center">No result</h2>
+                        <h2 class="panel-title text-center"><spring:message code="infoStudent.studentDoesNotHaveMarks"/></h2>
                     </div>
                 </div>
             </c:when>
@@ -23,9 +27,9 @@
                 <table class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Mark</th>
-                    <th>Subject</th>
-                    <th>Action</th>
+                    <th><spring:message code="infoStudent.mark"/></th>
+                    <th><spring:message code="infoStudent.subject"/></th>
+                    <th><spring:message code="infoStudent.action"/></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -34,7 +38,7 @@
                       <td>${mark.mark}</td>
                       <td>${mark.subject.name}</td>
                       <td><a class="btn btn-sm btn-info confirmation"
-                             href="<c:url value='deleteMark.html?id=${student.id}&markId=${mark.id}'/>" title="delete">
+                             href="<c:url value='deleteMark.html?id=${student.id}&markId=${mark.id}'/>" title="<spring:message code="infoStudent.delete"/>">
                         <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                       </a></td>
                     </tr>
@@ -49,14 +53,14 @@
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-6">
-      <h2>Add Mark</h2>
+      <h2><spring:message code="infoStudent.AddMark"/></h2>
       <div class="table-responsive">
         <form method="post" action="insertMark.html?id=${student.id}">
             <table class="table table-bordered table-hover table-striped">
               <thead>
               <tr>
-                <th>Subject</th>
-                <th>Mark</th>
+                <th><spring:message code="infoStudent.subject"/></th>
+                <th><spring:message code="infoStudent.mark"/></th>
               </tr>
               </thead>
               <tbody>
@@ -89,7 +93,7 @@
                 </tr>
               </tbody>
             </table>
-          <input type="submit" value="Add mark" class="btn btn-primary">
+          <input type="submit" value="<spring:message code="infoStudent.AddMark"/>" class="btn btn-primary">
         </form>
 
       </div>

@@ -15,7 +15,7 @@ public class Subject {
     private int id;
 
     @Column(name="SUBJECT_NAME")
-    @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Subject is invalid")
+    @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Subject name is invalid")
     private String name;
 
     @OneToMany(mappedBy = "subject")

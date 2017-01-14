@@ -18,4 +18,6 @@ public interface UserDao {
     void deleteUser(User user);
 
     void updateUser(User user);
+
+    User getByLogin(String login);
 }

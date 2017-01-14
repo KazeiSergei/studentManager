@@ -8,12 +8,15 @@ import com.courses.spring.model.Student;
 import com.courses.spring.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Transactional(rollbackFor = Exception.class)
 public class MarkController {
 
     @Autowired
@@ -39,8 +42,16 @@ public class MarkController {
 
 
     @RequestMapping(value = "/deleteMark.html", method = RequestMethod.GET)
-    public String deleteMark(@RequestParam("id") int id, @RequestParam("markId") int markId) {
+    public ModelAndView deleteMark(@RequestParam(value = "id", required = false) Integer id,
+                                   @RequestParam(value="markId", required = false) Integer markId) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (markId == null || markDao.getMarkById(markId) == null) {
+            modelAndView.addObject("message", "There is no mark with such id");
+            modelAndView.setViewName("incorrectId");
+            return modelAndView;
+        }
         markDao.deleteMark(markId);
-        return "redirect:/infoStudent.html?id=" + id;
+        modelAndView.setViewName("redirect:/infoStudent.html?id=" + id);
+        return modelAndView;
     }
 }

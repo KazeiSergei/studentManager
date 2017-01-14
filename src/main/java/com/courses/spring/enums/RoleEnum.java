@@ -2,9 +2,16 @@ package com.courses.spring.enums;
 
 
 public enum RoleEnum {
-    TEACHER,
-    DIRECTOR;
+    TEACHER("TEACHER"),
+    DIRECTOR("DIRECTOR");
 
-    RoleEnum() {
+    String roleEnum;
+
+    RoleEnum(String roleEnum) {
+        this.roleEnum = roleEnum;
+    }
+
+    public String getRoleEnum(){
+       return roleEnum;
     }
 }

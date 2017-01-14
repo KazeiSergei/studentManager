@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component("markDao")
-@Transactional
 public class MarkDaoImpl implements MarkDao {
 
     @Autowired
@@ -25,7 +24,7 @@ public class MarkDaoImpl implements MarkDao {
 
     @Override
     public Mark getMarkById(int id) {
-        return (Mark) getSession().load(Mark.class, id);
+        return (Mark) getSession().get(Mark.class, id);
     }
 
     @Override

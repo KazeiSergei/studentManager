@@ -8,6 +8,7 @@ import com.courses.spring.model.Mark;
 import com.courses.spring.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@Transactional(rollbackFor = Exception.class)
 public class StudentController {
 
     @Autowired
@@ -46,9 +48,14 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/updateStudent.html", method = RequestMethod.GET)
-    public ModelAndView pageForUpdate(@RequestParam("id") Integer id) {
-        Student student = studentDao.getStudentById(id);
+    public ModelAndView pageForUpdate(@RequestParam(value = "id", required = false) Integer id) {
         ModelAndView modelAndView = new ModelAndView();
+        if (id == null || studentDao.getStudentById(id) == null) {
+            modelAndView.addObject("message", "There is no student with such id");
+            modelAndView.setViewName("incorrectId");
+            return modelAndView;
+        }
+        Student student = studentDao.getStudentById(id);
         modelAndView.addObject("student", student);
         modelAndView.setViewName("editStudent");
         return modelAndView;
@@ -65,10 +72,13 @@ public class StudentController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/deleteStudent", method = RequestMethod.GET)
-    public String deleteStudent(@RequestParam("id") Integer id) {
-        if (null == studentDao.getStudentById(id)) {
-            return "redirect:/";
+    @RequestMapping(value = "/deleteStudent.html", method = RequestMethod.GET)
+    public ModelAndView deleteStudent(@RequestParam(value = "id", required = false) Integer id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (id == null || studentDao.getStudentById(id) == null) {
+            modelAndView.addObject("message", "There is no student with such id");
+            modelAndView.setViewName("incorrectId");
+            return modelAndView;
         } else {
             Student student = studentDao.getStudentById(id);
             Set<Mark> marks = student.getMarks();
@@ -76,22 +86,16 @@ public class StudentController {
                 markDao.deleteMark(mark.getId());
             }
             studentDao.deleteStudent(id);
-            return "redirect:/";
+            modelAndView.setViewName("redirect:/");
+            return modelAndView;
         }
     }
 
     @RequestMapping(value = "/infoStudent.html", method = RequestMethod.GET)
-    public ModelAndView infoStudent(@RequestParam("id") Integer id) {
+    public ModelAndView infoStudent(@RequestParam(value = "id", required = false) Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Student> studentList = studentDao.getAllStudent();
-        boolean isStudent = false;
-        for(Student student: studentList){
-            if(student.getId()==id){
-                isStudent = true;
-            }
-        }
-        if(!isStudent){
-            modelAndView.addObject("message","There is no student with such id");
+        if (id == null || studentDao.getStudentById(id) == null) {
+            modelAndView.addObject("message", "There is no student with such id");
             modelAndView.setViewName("incorrectId");
             return modelAndView;
         }

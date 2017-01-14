@@ -8,12 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component("studentDao")
-@Transactional
 public class StudentDaoImpl implements StudentDao {
 
     @Autowired
@@ -25,7 +23,7 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student getStudentById(int id) {
-        return (Student) getSession().load(Student.class, new Integer(id));
+        return (Student) getSession().get(Student.class, id);
     }
 
     @Override

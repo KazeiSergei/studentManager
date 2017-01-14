@@ -5,6 +5,7 @@ import com.courses.spring.dao.interfaces.SubjectDao;
 import com.courses.spring.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
+@Transactional(rollbackFor = Exception.class)
 public class SubjectController {
 
     @Autowired
@@ -35,9 +37,14 @@ public class SubjectController {
     }
 
     @RequestMapping(value = "/updateSubject.html", method = RequestMethod.GET)
-    public ModelAndView updateSubject(@RequestParam("id") Integer id) {
-        Subject subject = subjectDao.getSubjectById(id);
+    public ModelAndView updateSubject(@RequestParam(value = "id", required = false) Integer id) {
         ModelAndView modelAndView = new ModelAndView();
+        if (id == null || subjectDao.getSubjectById(id) == null) {
+            modelAndView.addObject("message", "There is no subject with such id");
+            modelAndView.setViewName("incorrectId");
+            return modelAndView;
+        }
+        Subject subject = subjectDao.getSubjectById(id);
         modelAndView.addObject("subject", subject);
         modelAndView.setViewName("editSubject");
         return modelAndView;
@@ -53,9 +60,16 @@ public class SubjectController {
     }
 
     @RequestMapping(value = "/deleteSubject.html", method = RequestMethod.GET)
-    public String deleteSubject(@RequestParam("id") Integer id) {
+    public ModelAndView deleteSubject(@RequestParam(value = "id", required = false) Integer id) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (id == null || subjectDao.getSubjectById(id) == null) {
+            modelAndView.addObject("message", "There is no subject with such id");
+            modelAndView.setViewName("incorrectId");
+            return modelAndView;
+        }
         Subject subject = subjectDao.getSubjectById(id);
         subjectDao.deleteSubject(id);
-        return "redirect:/";
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 }

@@ -16,11 +16,11 @@ public class Student {
     private int id;
 
     @Column(name="FIRST_NAME")
-    @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Name is invalid")
+    /*@Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Name is invalid")*/
     private String firstName;
 
     @Column(name="SECOND_NAME")
-    @Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "SecondName is invalid")
+    /*@Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "SecondName is invalid")*/
     private String secondName;
 
     @OneToMany(mappedBy = "student")

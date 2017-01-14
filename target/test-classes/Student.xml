@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <student ID="1" FIRST_NAME="Anton" SECOND_NAME="Zaleski"/>
+    <student ID="2" FIRST_NAME="Artem" SECOND_NAME="Pozniak"/>
+</dataset>

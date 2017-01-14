@@ -51,6 +51,12 @@
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
+      <li>
+        <a class="navbar-brand" href="?language=en">en</a>
+      <li>
+        <a class="navbar-brand" href="?language=ru">ru</a>
+      </li>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
             class="caret"></b></a>
