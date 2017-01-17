@@ -1,8 +1,8 @@
 package com.courses.spring.controller;
 
 
-import com.courses.spring.dao.interfaces.SubjectDao;
 import com.courses.spring.model.Subject;
+import com.courses.spring.service.interfaces.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 
 @Controller
-@Transactional(rollbackFor = Exception.class)
 public class SubjectController {
 
     @Autowired
-    private SubjectDao subjectDao;
+    private SubjectService subjectService;
 
     @RequestMapping(value = "/createSubject.html", method = RequestMethod.GET)
     public ModelAndView createSubject() {
@@ -32,19 +31,19 @@ public class SubjectController {
         if (bindingResult.hasErrors()) {
             return "editSubject";
         }
-        subjectDao.insertSubject(subject);
+        subjectService.insertSubject(subject);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/updateSubject.html", method = RequestMethod.GET)
     public ModelAndView updateSubject(@RequestParam(value = "id", required = false) Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        if (id == null || subjectDao.getSubjectById(id) == null) {
+        if (id == null || subjectService.getSubjectById(id) == null) {
             modelAndView.addObject("message", "There is no subject with such id");
             modelAndView.setViewName("incorrectId");
             return modelAndView;
         }
-        Subject subject = subjectDao.getSubjectById(id);
+        Subject subject = subjectService.getSubjectById(id);
         modelAndView.addObject("subject", subject);
         modelAndView.setViewName("editSubject");
         return modelAndView;
@@ -55,20 +54,20 @@ public class SubjectController {
         if (bindingResult.hasErrors()) {
             return "editSubject";
         }
-        subjectDao.updateSubject(subject);
+        subjectService.updateSubject(subject);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/deleteSubject.html", method = RequestMethod.GET)
     public ModelAndView deleteSubject(@RequestParam(value = "id", required = false) Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        if (id == null || subjectDao.getSubjectById(id) == null) {
+        if (id == null || subjectService.getSubjectById(id) == null) {
             modelAndView.addObject("message", "There is no subject with such id");
             modelAndView.setViewName("incorrectId");
             return modelAndView;
         }
-        Subject subject = subjectDao.getSubjectById(id);
-        subjectDao.deleteSubject(id);
+        Subject subject = subjectService.getSubjectById(id);
+        subjectService.deleteSubject(id);
         modelAndView.setViewName("redirect:/");
         return modelAndView;
     }

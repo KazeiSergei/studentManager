@@ -26,9 +26,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/administrative**/**", "/index**/**").access("hasRole('DIRECTOR') and hasRole('TEACHER')")
-                .antMatchers("/createStudent**/**", "/createSubject**/**").access("hasRole('DIRECTOR')")
-                .antMatchers("/infoStudent**/**").access("hasRole('TEACHER')")
+                .antMatchers("/administrative**/**", "/index**/**").access("hasRole('DIRECTOR') or hasRole('TEACHER')")
+                .antMatchers("/createStudent**/**", "/createSubject**/**",
+                        "/deleteStudent**/**", "/updateStudent**/**",
+                        "/updateSubject**/**", "/deleteSubject**/**").access("hasRole('DIRECTOR')")
+                .antMatchers("/infoStudent**/**", "/insertMark**/**", "/deleteMark**/**").access("hasRole('TEACHER')")
                 .and().formLogin().loginPage("/login")
                 .usernameParameter("login").passwordParameter("password")
                 .and().csrf()

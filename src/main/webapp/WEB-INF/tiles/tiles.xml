@@ -6,11 +6,11 @@
     <put-attribute name="title" value="views.index.title"/>
   </definition>
 
-  <definition name="_login" template="/WEB-INF/templates/login.jsp">
+  <definition name="_login" template="/WEB-INF/templates/mainLogin.jsp">
     <put-attribute name="title" value="views.index.title"/>
   </definition>
 
-  <definition name="login" extends="_main">
+  <definition name="login" extends="_login">
     <put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp"/>
   </definition>
 
@@ -36,6 +36,10 @@
 
   <definition name="incorrectId" extends="_main">
     <put-attribute name="body" value="/WEB-INF/views/jsp/incorrectId.jsp"/>
+  </definition>
+
+  <definition name="accessDenied" extends="_main">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/accessDenied.jsp"/>
   </definition>
 
   <definition name="errors/404" extends="_main">

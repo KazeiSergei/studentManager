@@ -62,7 +62,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
         source.setDefaultEncoding("UTF-8");
         source.setUseCodeAsDefaultMessage(true);
-        source.setBasename("classpath:messages");
+        source.setBasenames("classpath:messages");
         return source;
     }
 
@@ -79,5 +79,4 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         sessionLocaleResolver.setDefaultLocale(new Locale("ru"));
         return sessionLocaleResolver;
     }
-
 }

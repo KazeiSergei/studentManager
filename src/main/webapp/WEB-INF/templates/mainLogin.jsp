@@ -50,17 +50,12 @@
       </button>
       <a class="navbar-brand" href="index.html">School management</a>
     </div>
-    <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-          <sec:authentication property="principal.username" />
-          <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="<c:url value="/logout" />"><i class="fa fa-fw fa-power-off"></i><spring:message code="login.logout"/></a>
-          </li>
-        </ul>
+        <a href="?language=en">en</a>
+      </li>
+      <li class="dropdown">
+        <a href="?language=ru">ru</a>
       </li>
     </ul>
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->

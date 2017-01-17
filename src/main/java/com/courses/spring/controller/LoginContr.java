@@ -3,6 +3,7 @@ package com.courses.spring.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.courses.spring.service.SecurityUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,8 +41,8 @@ public class LoginContr {
     private String getPrincipal(){
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
+        if (principal instanceof SecurityUser) {
+            userName = ((SecurityUser)principal).getUsername();
         } else {
             userName = principal.toString();
         }

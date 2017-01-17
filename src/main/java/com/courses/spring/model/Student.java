@@ -2,25 +2,28 @@ package com.courses.spring.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name ="student")
+@Table(name = "student")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    @Column(name="FIRST_NAME")
-    /*@Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "Name is invalid")*/
+    @Column(name = "FIRST_NAME")
+    @NotNull
+    @Size(min = 2, max = 14)
     private String firstName;
 
-    @Column(name="SECOND_NAME")
-    /*@Pattern(regexp="^[A-Z][a-z]{1,255}$",message = "SecondName is invalid")*/
+    @Column(name = "SECOND_NAME")
+    @NotNull
+    @Size(min = 2, max = 14, message = "{secondName.size.error}")
     private String secondName;
 
     @OneToMany(mappedBy = "student")

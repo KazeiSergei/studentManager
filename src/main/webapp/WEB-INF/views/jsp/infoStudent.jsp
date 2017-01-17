@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/fragments/taglibs.jsp"%>
 
 <div class="container-fluid">
-  <span style="float:right">
+    <span style="float:right">
             <a href="?id=${student.id}&language=en">en</a>
             <a href="?id=${student.id}&language=ru">ru</a>
         </span>
@@ -56,7 +56,8 @@
       <h2><spring:message code="infoStudent.AddMark"/></h2>
       <div class="table-responsive">
         <form method="post" action="insertMark.html?id=${student.id}">
-            <table class="table table-bordered table-hover table-striped">
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          <table class="table table-bordered table-hover table-striped">
               <thead>
               <tr>
                 <th><spring:message code="infoStudent.subject"/></th>

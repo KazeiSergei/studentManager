@@ -36,6 +36,7 @@
                       <td>${student.firstName}</td>
                       <td>${student.secondName}</td>
                       <td>
+                        <sec:authorize access="hasRole('DIRECTOR')">
                         <a class="btn btn-sm btn-info"
                            href="<c:url value='/updateStudent.html?id=${student.id}'/>" title="<spring:message code="administrative.update"/>">
                           <i class="fa fa-fw fa-edit" aria-hidden="true"></i>
@@ -44,6 +45,13 @@
                            href="<c:url value='/deleteStudent.html?id=${student.id}'/>" title="<spring:message code="administrative.delete"/>" >
                           <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                         </a>
+                        </sec:authorize>
+                        <sec:authorize access="hasRole('TEACHER')">
+                        <a class="btn btn-sm btn-info"
+                           href="<c:url value='/infoStudent.html?id=${student.id}'/>" title="<spring:message code="teachersJournal.info"/>">
+                          <i class="fa fa-fw fa-info" aria-hidden="true"></i>
+                        </a>
+                        </sec:authorize>
                       </td>
                     </tr>
                   </c:forEach>
@@ -51,8 +59,10 @@
                 </table>
             </c:otherwise>
         </c:choose>
-        <c:url value="/createStudent.html" var="createUrl"/>
-        <button class="btn btn-success" onClick='location.href="${createUrl}"'><spring:message code="administrative.student.createStudent"/></button>
+        <sec:authorize access="hasRole('DIRECTOR')">
+          <c:url value="/createStudent.html" var="createUrl"/>
+          <button class="btn btn-success" onClick='location.href="${createUrl}"'><spring:message code="administrative.student.createStudent"/></button>
+        </sec:authorize>
       </div>
     </div>
     <div class="col-lg-6">
@@ -72,7 +82,9 @@
               <tr>
                 <th width="10%"><spring:message code="administrative.id"/></th>
                 <th><spring:message code="administrative.subject.name"/></th>
+                <sec:authorize access="hasRole('DIRECTOR')">
                 <th><spring:message code="administrative.actions"/></th>
+                </sec:authorize>
               </tr>
               </thead>
               <tbody>
@@ -80,7 +92,9 @@
                 <tr>
                   <td>${subject.id}</td>
                   <td>${subject.name}</td>
+                  <sec:authorize access="hasRole('DIRECTOR')">
                   <td>
+
                     <a class="btn btn-sm btn-info"
                        href="<c:url value='/updateSubject.html?id=${subject.id}'/>" title="<spring:message code="administrative.update"/>">
                       <i class="fa fa-fw fa-edit" aria-hidden="true"></i>
@@ -90,14 +104,17 @@
                       <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                     </a>
                   </td>
+                  </sec:authorize>
                 </tr>
               </c:forEach>
               </tbody>
             </table>
           </c:otherwise>
         </c:choose>
-        <c:url value="/createSubject.html" var="createUrl"/>
-        <button class="btn btn-success" onClick='location.href="${createUrl}"'><spring:message code="administrative.subject.createSubject"/></button>
+        <sec:authorize access="hasRole('DIRECTOR')">
+          <c:url value="/createSubject.html" var="createUrl"/>
+          <button class="btn btn-success" onClick='location.href="${createUrl}"'><spring:message code="administrative.subject.createSubject"/></button>
+        </sec:authorize>
       </div>
     </div>
   </div>
