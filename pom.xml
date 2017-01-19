@@ -26,6 +26,7 @@
     <jetty-maven-plugin.version>9.2.11.v20150529</jetty-maven-plugin.version>
     <tiles.version>3.0.4</tiles.version>
     <springsecurity.version>4.2.1.RELEASE</springsecurity.version>
+    <log4j.version>1.2.17</log4j.version>
   </properties>
 
   <dependencies>
@@ -57,11 +58,10 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot</artifactId>
-      <version>1.2.3.RELEASE</version>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
     </dependency>
-
 
     <!-- Spring Security -->
     <dependency>

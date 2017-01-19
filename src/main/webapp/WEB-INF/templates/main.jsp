@@ -51,6 +51,9 @@
       <a class="navbar-brand" href="index.html">School management</a>
     </div>
     <!-- Top Menu Items -->
+
+    <ul class="nav navbar-right top-nav">
+    </ul>
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>

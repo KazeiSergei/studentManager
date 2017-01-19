@@ -1,5 +1,0 @@
-com\courses\spring\dao\StudentDaoImplTest.class
-com\courses\spring\configuration\HibernateTestConfiguration.class
-com\courses\spring\dao\SubjectDaoImplTest.class
-com\courses\spring\dao\EntityDaoImplTest.class
-com\courses\spring\dao\MarkDaoImplTest.class

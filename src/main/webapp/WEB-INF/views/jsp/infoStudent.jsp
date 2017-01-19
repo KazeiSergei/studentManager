@@ -10,6 +10,7 @@
     <span style="float:right">
             <a href="?id=${student.id}&language=en">en</a>
             <a href="?id=${student.id}&language=ru">ru</a>
+        <c:out value="${requestScope['javax.servlet.forward.request_uri']}?${requestScope['javax.servlet.forward.query_string']}" />
         </span>
   <div class="row">
     <div class="col-lg-6">
@@ -77,18 +78,11 @@
                   </td>
                   <td>
                     <div class="form-group">
-                    <select name="mark" class="form-control">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
+                        <select name="mark" class="form-control">
+                        <c:forEach var="i" begin="1" end="10">
+                            <option value="${i}">${i}</option>
+                        </c:forEach>
+                        </select>
                     </div>
                   </td>
                 </tr>

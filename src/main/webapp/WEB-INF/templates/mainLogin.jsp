@@ -58,16 +58,9 @@
         <a href="?language=ru">ru</a>
       </li>
     </ul>
-    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav side-nav">
-        <li class="active">
-          <a href="<c:url value='/'/>"><i class="fa fa-fw fa-table"></i>Administrative</a>
-        </li>
-      </ul>
-    </div>
+
   </nav>
-  <div id="page-wrapper">
+  <div class="login-wrapper">
     <tiles:insertAttribute name="body"/>
   </div>
 </div>

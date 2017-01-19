@@ -9,7 +9,7 @@
 <div id="LoginForm">
     <div class="row">
         <div class="col-lg-6">
-            <h2><spring:message code="login.authorize"/></h2>
+            <h2 class="white-color"><spring:message code="login.authorize"/></h2>
             <form action="${loginUrl}" method="post" class="form-horizontal">
                 <c:if test="${param.error != null}">
                     <div class="alert alert-danger">

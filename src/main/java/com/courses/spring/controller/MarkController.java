@@ -6,6 +6,7 @@ import com.courses.spring.model.Subject;
 import com.courses.spring.service.interfaces.MarkService;
 import com.courses.spring.service.interfaces.StudentService;
 import com.courses.spring.service.interfaces.SubjectService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MarkController {
+
+    private static final Logger log = Logger.getLogger(MarkController.class);
 
     @Autowired
     private SubjectService subjectService;
@@ -30,6 +33,7 @@ public class MarkController {
     public String insertMark(@RequestParam("id") int id, @RequestParam("subject") int subjectId, @RequestParam("mark") int mark ) {
         Subject subject = subjectService.getSubjectById(subjectId);
         Student student = studentService.getStudentById(id);
+        log.info("Добавление оценки");
         Mark mark1 = new Mark();
         mark1.setMark(mark);
         mark1.setStudent(student);
@@ -42,6 +46,7 @@ public class MarkController {
     @RequestMapping(value = "/deleteMark.html", method = RequestMethod.GET)
     public ModelAndView deleteMark(@RequestParam(value = "id", required = false) Integer id,
                                    @RequestParam(value="markId", required = false) Integer markId) {
+        log.info("Удаление оценки");
         ModelAndView modelAndView = new ModelAndView();
         if (markId == null || markService.getMarkById(markId) == null) {
             modelAndView.addObject("message", "There is no mark with such id");
