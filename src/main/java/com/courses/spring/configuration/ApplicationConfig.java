@@ -21,7 +21,7 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.courses.spring" })
+@ComponentScan(basePackages = {"com.courses.spring"})
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -70,7 +70,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("language");
-        return  localeChangeInterceptor;
+        return localeChangeInterceptor;
     }
 
     @Bean(name = "localeResolver")

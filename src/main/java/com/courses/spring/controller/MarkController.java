@@ -9,7 +9,6 @@ import com.courses.spring.service.interfaces.SubjectService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +29,7 @@ public class MarkController {
     private MarkService markService;
 
     @RequestMapping(value = "/insertMark.html", method = RequestMethod.POST)
-    public String insertMark(@RequestParam("id") int id, @RequestParam("subject") int subjectId, @RequestParam("mark") int mark ) {
+    public String insertMark(@RequestParam("id") int id, @RequestParam("subject") int subjectId, @RequestParam("mark") int mark) {
         Subject subject = subjectService.getSubjectById(subjectId);
         Student student = studentService.getStudentById(id);
         log.info("Добавление оценки");
@@ -45,7 +44,7 @@ public class MarkController {
 
     @RequestMapping(value = "/deleteMark.html", method = RequestMethod.GET)
     public ModelAndView deleteMark(@RequestParam(value = "id", required = false) Integer id,
-                                   @RequestParam(value="markId", required = false) Integer markId) {
+                                   @RequestParam(value = "markId", required = false) Integer markId) {
         log.info("Удаление оценки");
         ModelAndView modelAndView = new ModelAndView();
         if (markId == null || markService.getMarkById(markId) == null) {

@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class MarkDaoImpl implements MarkDao {
 
     @Override
     public void deleteMark(int id) {
-        getSession().delete(getSession().load(Mark.class,new Integer(id)));
+        getSession().delete(getSession().load(Mark.class, new Integer(id)));
     }
 
     @Override

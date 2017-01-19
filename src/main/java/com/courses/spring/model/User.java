@@ -1,31 +1,34 @@
 package com.courses.spring.model;
 
-import com.courses.spring.enums.RoleEnum;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
 
-    @Column(name="ROLE")
+    @Column(name = "ROLE")
     private String role;
 
-    @Column(name="NAME")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name="SECOND_NAME")
+    @Column(name = "SECOND_NAME")
     private String secondName;
 
-    @Column(name="PASSWORD")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name="LOGIN")
+    @Column(name = "LOGIN")
     private String login;
 
     public int getId() {

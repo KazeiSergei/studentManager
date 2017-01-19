@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getByLogin(String login) {
         Criteria criteria = getSession().createCriteria(User.class);
-        criteria.add(Restrictions.eq("login",login));
+        criteria.add(Restrictions.eq("login", login));
         return (User) criteria.uniqueResult();
     }
 }
