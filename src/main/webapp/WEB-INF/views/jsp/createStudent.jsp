@@ -6,8 +6,11 @@
 
 <%@ include file="/WEB-INF/fragments/taglibs.jsp" %>
 <div class="container-fluid">
-
   <div class="row">
+    <span style="float:right">
+            <a href="?id=${student.id}&language=en">en</a>
+            <a href="?id=${student.id}&language=ru">ru</a>
+     </span>
     <div class="col-lg-6">
       <c:choose>
         <c:when test="${student.id != 0}">

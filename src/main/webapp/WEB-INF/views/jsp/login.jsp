@@ -36,6 +36,8 @@
                 <div class="form-actions">
                     <input type="submit"
                            class="btn btn-block btn-primary btn-default" value='<spring:message code="login.enter"/>'>
+                    <c:url value="/registration.html" var="registration"/>
+                    <input type="button" class="btn btn-block btn-primary btn-default" onclick="location.href='${registration}'" value="<spring:message code="login.registration.user"/>">
                 </div>
             </form>
         </div>

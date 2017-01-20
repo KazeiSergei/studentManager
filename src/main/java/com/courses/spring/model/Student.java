@@ -13,6 +13,11 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * {@code Student} class is a bean that mapping
+ * corresponding DB table entity.
+ */
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -29,7 +34,7 @@ public class Student {
 
     @Column(name = "SECOND_NAME")
     @NotNull
-    @Size(min = 2, max = 14, message = "{secondName.size.error}")
+    @Size(min = 2, max = 14)
     private String secondName;
 
     @OneToMany(mappedBy = "student")

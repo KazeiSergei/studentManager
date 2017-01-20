@@ -10,8 +10,7 @@
     <span style="float:right">
             <a href="?id=${student.id}&language=en">en</a>
             <a href="?id=${student.id}&language=ru">ru</a>
-        <c:out value="${requestScope['javax.servlet.forward.request_uri']}?${requestScope['javax.servlet.forward.query_string']}" />
-        </span>
+     </span>
   <div class="row">
     <div class="col-lg-6">
       <h2><spring:message code="infoStudent.student"/> &nbsp ${student.firstName} &nbsp ${student.secondName}</h2>

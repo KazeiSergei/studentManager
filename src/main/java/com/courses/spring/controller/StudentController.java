@@ -59,14 +59,18 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/updateStudent.html", method = RequestMethod.POST)
-    public String updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+    public ModelAndView updateStudent(@Valid @ModelAttribute("student") Student student, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            return "editStudent";
+            modelAndView.setViewName("editStudent");
+            return modelAndView;
         } else if (null == studentService.getStudentById(student.getId())) {
-            return "redirect:/";
+            modelAndView.addObject("message", "There is no student with such id");
+            modelAndView.setViewName("incorrectId");
         }
         studentService.updateStudent(student);
-        return "redirect:/";
+        modelAndView.setViewName("redirect:/");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/deleteStudent.html", method = RequestMethod.GET)

@@ -3,6 +3,7 @@ package com.courses.spring.controller;
 import com.courses.spring.service.interfaces.MarkService;
 import com.courses.spring.service.interfaces.StudentService;
 import com.courses.spring.service.interfaces.SubjectService;
+import com.courses.spring.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ public class MainController {
     private StudentService studentService;
 
     @Autowired
-    private MarkService markService;
+    private UserService userService;
 
     @Autowired
     private SubjectService subjectService;
@@ -33,6 +34,7 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("students", studentService.getAllStudent());
         modelAndView.addObject("subjects", subjectService.getAllSubject());
+        modelAndView.addObject("users", userService.getAllUser());
         modelAndView.addObject("user", getPrincipal());
         modelAndView.setViewName("index");
         return modelAndView;

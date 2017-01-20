@@ -1,5 +1,6 @@
 package com.courses.spring.configuration;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +35,7 @@ public class HibernateConfiguration {
         return sessionFactory;
     }
 
-    @Bean
+    /*@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
@@ -42,6 +43,18 @@ public class HibernateConfiguration {
         dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
         return dataSource;
+    }*/
+
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        basicDataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+        basicDataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
+        basicDataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        basicDataSource.setInitialSize(20);
+        basicDataSource.setMaxActive(30);
+        return basicDataSource;
     }
 
     private Properties hibernateProperties() {

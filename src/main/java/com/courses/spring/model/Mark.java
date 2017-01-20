@@ -9,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * {@code Mark} class is a bean that mapping
+ * corresponding DB table entity.
+ */
+
 @Entity
 @Table(name = "mark")
 public class Mark {

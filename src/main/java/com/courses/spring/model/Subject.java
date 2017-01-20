@@ -12,6 +12,11 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * {@code Subject} class is a bean that mapping
+ * corresponding DB table entity.
+ */
+
 @Entity
 @Table(name = "subject")
 public class Subject {

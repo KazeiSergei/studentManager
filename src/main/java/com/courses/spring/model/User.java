@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * {@code User} class is a bean that mapping
+ * corresponding DB table entity.
+ */
+
 @Entity
 @Table(name = "users")
 public class User {

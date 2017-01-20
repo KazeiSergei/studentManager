@@ -10,6 +10,10 @@
     <put-attribute name="title" value="views.index.title"/>
   </definition>
 
+  <definition name="_registration" template="/WEB-INF/templates/registration.jsp">
+    <put-attribute name="title" value="views.index.title"/>
+  </definition>
+
   <definition name="login" extends="_login">
     <put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp"/>
   </definition>
@@ -32,6 +36,10 @@
 
   <definition name="infoStudent" extends="_main">
     <put-attribute name="body" value="/WEB-INF/views/jsp/infoStudent.jsp"/>
+  </definition>
+
+  <definition name="registration" extends="_registration">
+    <put-attribute name="body" value="/WEB-INF/views/jsp/registration.jsp"/>
   </definition>
 
   <definition name="incorrectId" extends="_main">
