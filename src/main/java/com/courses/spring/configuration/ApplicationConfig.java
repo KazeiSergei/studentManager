@@ -76,7 +76,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-        sessionLocaleResolver.setDefaultLocale(new Locale("ru"));
+        sessionLocaleResolver.setDefaultLocale(new Locale("en"));
         return sessionLocaleResolver;
     }
 }

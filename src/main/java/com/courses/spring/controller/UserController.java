@@ -45,7 +45,7 @@ public class UserController {
         }
         User user = userService.getUserById(id);
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
+        modelAndView.setViewName("updateUser");
         return modelAndView;
     }
 

@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/administrative**/**", "/index**/**").access("hasRole('DIRECTOR') or hasRole('TEACHER') or hasRole('USER')")
                 .antMatchers("/createStudent**/**", "/createSubject**/**",
                         "/deleteStudent**/**", "/updateStudent**/**",
-                        "/updateSubject**/**", "/deleteSubject**/**").access("hasRole('DIRECTOR')")
+                        "/updateSubject**/**", "/deleteSubject**/**", "/updateUser**/**" ).access("hasRole('DIRECTOR')")
                 .antMatchers("/infoStudent**/**", "/insertMark**/**", "/deleteMark**/**").access("hasRole('TEACHER')")
                 .and().formLogin().loginPage("/login")
                 .usernameParameter("login").passwordParameter("password")

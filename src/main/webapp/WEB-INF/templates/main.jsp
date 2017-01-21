@@ -48,7 +48,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">School management</a>
+      <a class="navbar-brand" href="index.html"><spring:message code="main.schoolManagement"/></a>
     </div>
     <!-- Top Menu Items -->
 
@@ -70,7 +70,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
         <li class="active">
-          <a href="<c:url value='/'/>"><i class="fa fa-fw fa-table"></i>Administrative</a>
+          <a href="<c:url value='/'/>"><i class="fa fa-fw fa-table"></i><spring:message code="main.administrative"/></a>
         </li>
       </ul>
     </div>
@@ -83,5 +83,8 @@
 <script src="<c:url value='/resources/core/js/bootstrap.min.js' />"></script>
 <script src="<c:url value='/resources/js/school.js' />"></script>
 </body>
-
 </html>
+
+<script type="text/javascript">
+  messages['delete.confirm.message']='<spring:message code="delete.confirm"/>';
+</script>

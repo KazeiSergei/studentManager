@@ -48,7 +48,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">School management</a>
+      <a class="navbar-brand" href="index.html"><spring:message code="main.schoolManagement"/></a>
     </div>
     <ul class="nav navbar-right top-nav">
       <li class="dropdown">

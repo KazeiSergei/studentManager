@@ -8,8 +8,8 @@
 
 <div class="container-fluid">
     <span style="float:right">
-            <a href="?id=${student.id}&language=en">en</a>
-            <a href="?id=${student.id}&language=ru">ru</a>
+            <a href="?language=en">en</a>
+            <a href="?language=ru">ru</a>
      </span>
     <div class="row">
         <div class="col-lg-6">
@@ -132,6 +132,8 @@
         </div>
     </div>
     <!-- /.row -->
+
+    <div class="row">
     <sec:authorize access="hasRole('DIRECTOR')">
         <div class="col-lg-6">
             <h2><spring:message code="administrative.user"/></h2>
@@ -149,7 +151,7 @@
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                             <tr>
-                                <th width="10%"><spring:message code="administrative.id"/></th>
+                                <th width="8%"><spring:message code="administrative.id"/></th>
                                 <th><spring:message code="administrative.user.name"/></th>
                                 <th><spring:message code="administrative.user.secondName"/></th>
                                 <th><spring:message code="administrative.user.login"/></th>
@@ -186,6 +188,7 @@
             </div>
         </div>
     </sec:authorize>
+    </div>
 </div>
 
 </div>

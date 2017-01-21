@@ -1,3 +1,5 @@
+messages = {};
+
 $(document).ready(function () {
     // Toggle warning style.
     $("span[data-server-validation-error]").each(function (index, element) {
@@ -14,7 +16,7 @@ $(document).ready(function () {
     /////////
 
     $('.confirmation').on('click', function () {
-        return confirm('Are you sure?');
+        return confirm(messages["delete.confirm.message"]);
     });
 });
 

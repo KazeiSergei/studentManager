@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * {@code User} class is a bean that mapping
@@ -25,15 +27,23 @@ public class User {
     private String role;
 
     @Column(name = "NAME")
+    @NotNull
+    @Size(min = 2, max = 14)
     private String name;
 
     @Column(name = "SECOND_NAME")
+    @NotNull
+    @Size(min = 2, max = 14)
     private String secondName;
 
     @Column(name = "PASSWORD")
+    @NotNull
+    @Size(min = 6, max = 14)
     private String password;
 
     @Column(name = "LOGIN")
+    @NotNull
+    @Size(min = 2, max = 14)
     private String login;
 
     public int getId() {

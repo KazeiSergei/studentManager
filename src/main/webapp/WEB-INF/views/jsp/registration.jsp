@@ -11,7 +11,7 @@
     <div class="col-lg-6">
       <c:choose>
         <c:when test="${user.id != 0}">
-          <h2 class="white-color"><spring:message code="registration.user.edit"/></h2>
+          <h2><spring:message code="registration.user.edit"/></h2>
           <c:set var="formAction" value="updateUser.html" />
         </c:when>
         <c:otherwise>
@@ -22,26 +22,52 @@
 
       <form:form method="POST" commandName="user" action="${formAction}">
         <div  class="form-group">
-          <c:if test="${user.id != 0}">
-          <form:hidden path="id"/>
-          </c:if>
-          <form:label path="name" class="white-color"><spring:message code="registration.user.name"/></form:label>
+          <c:choose>
+          <c:when test="${user.id != 0}">
+            <form:hidden path="id"/>
+            <form:label path="name"><spring:message code="registration.user.name"/></form:label>
+          </c:when>
+          <c:otherwise>
+            <form:label path="name" class="white-color"><spring:message code="registration.user.name"/></form:label>
+          </c:otherwise>
+          </c:choose>
           <form:input path="name" class="form-control"/>
           <utils:errors bean="user" property="name"/>
 
-          <form:label path="secondName" class="white-color"><spring:message code="registration.user.secondName"/></form:label>
+          <c:choose>
+          <c:when test="${user.id != 0}">
+            <form:label path="secondName"><spring:message code="registration.user.secondName"/></form:label>
+          </c:when>
+          <c:otherwise>
+            <form:label path="secondName" class="white-color"><spring:message code="registration.user.secondName"/></form:label>
+          </c:otherwise>
+          </c:choose>
           <form:input path="secondName" class="form-control"/>
           <utils:errors bean="user" property="secondName"/>
 
-          <form:label path="login" class="white-color"><spring:message code="registration.user.login"/></form:label>
+          <c:choose>
+          <c:when test="${user.id != 0}">
+            <form:label path="login"><spring:message code="registration.user.login"/></form:label>
+          </c:when>
+          <c:otherwise>
+            <form:label path="login" class="white-color"><spring:message code="registration.user.login"/></form:label>
+          </c:otherwise>
+          </c:choose>
           <form:input path="login" class="form-control"/>
           <utils:errors bean="user" property="secondName"/>
 
-          <form:label path="password" class="white-color"><spring:message code="registration.user.password"/></form:label>
+          <c:choose>
+          <c:when test="${user.id != 0}">
+            <form:label path="password"><spring:message code="registration.user.password"/></form:label>
+          </c:when>
+          <c:otherwise>
+           <form:label path="password" class="white-color"><spring:message code="registration.user.password"/></form:label>
+          </c:otherwise>
+          </c:choose>
           <form:input path="password" class="form-control" type="password"/>
           <utils:errors bean="user" property="secondName"/>
           <sec:authorize access="hasRole('DIRECTOR')">
-            <form:label path="role" class="white-color"><spring:message code="registration.user.role"/></form:label>
+            <form:label path="role"><spring:message code="registration.user.role"/></form:label>
             <form:select path="role" class="form-control">
               <form:option value="USER" label="User"/>
               <form:option value="DIRECTOR" label="Director"/>
